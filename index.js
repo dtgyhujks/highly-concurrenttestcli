@@ -1,13 +1,11 @@
-function maxProduct(nums) {
-  if (nums.length === 0) return 0;
-  let maxSoFar = nums[0];
-  let minSoFar = nums[0];
-  let maxProduct = nums[0];
-  for (let i = 1; i < nums.length; i++) {
-    const temp = maxSoFar;
-    maxSoFar = Math.max(nums[i], nums[i] * maxSoFar, nums[i] * minSoFar);
-    minSoFar = Math.min(nums[i], nums[i] * temp, nums[i] * minSoFar);
-    maxProduct = Math.max(maxProduct, maxSoFar);
+function searchInsert(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    if (nums[mid] === target) return mid;
+    if (nums[mid] < target) left = mid + 1;
+    else right = mid - 1;
   }
-  return maxProduct;
+  return left;
 }
